@@ -1,71 +1,80 @@
-variable vsphere_user {
-    description = "vCenter User"
-    type = string
+variable "vsphere_user" {
+  description = "vCenter User"
+  type        = string
 }
 
-variable vsphere_password {
-    description = "vCenter User password."
-    type = string
+variable "vsphere_password" {
+  description = "vCenter User password."
+  type        = string
 }
 
-variable vsphere_server {
-    description = "vCenter Server"
-    type = string
+variable "vsphere_server" {
+  description = "vCenter Server"
+  type        = string
 }
 
-variable VMDatacenter {
-    description = "VM Datacenter"
-    type = string
+variable "VMDatacenter" {
+  description = "VM Datacenter"
+  type        = string
 }
 
-variable ISODatastore {
-    description = "Datastore that contains the ISO files"
-    type = string
+variable "VMDatastore" {
+  description = "Datastore for the VM Placement"
+  type        = string
 }
 
 # ----- With a standalone single node VMWare cluster use the host name / IP for the Cluster Name
-variable VMCluster {
-    description = "vCenter Cluster"
-    type = string
+variable "VMCluster" {
+  description = "vCenter Cluster"
+  type        = string
 }
 
-# ----- VM Settings
-variable VMCommon {
-    type = map
+variable "vmname" {
+  description = "Name of the VM"
+  type        = string
 }
 
-variable VMs {
-    description = "VM Configs"
-    type = list(object({
-        Name=string,
-        Domain=string,
-        Folder=string,
-        CPU=number,
-        RAM=number,
-        K3sRole=string
-    }))
+variable "vmfolder" {
+  description = "vCenter folder where you want to create the VM"
+  type        = string
 }
 
-variable "AdminAcct" {
-    type = string
+variable "vmnetwork" {
+  description = "network to connect to the VM"
+  type        = string
 }
 
-variable "AdminPW" {
-    type = string
+variable "num_cpus" {
+  description = "number of cpus for the VM"
+  type        = number
 }
 
-variable "RHEL_Sub_user" {
-    type = string
+variable "ram" {
+  description = "GBs of RAM for the VM"
+  type        = number
 }
 
-variable "RHEL_Sub_PW" {
-    type = string
+variable "vmtemplate" {
+  description = "Name of the VM Template"
+  type        = string
 }
 
-variable "Role" {
-    type = string
+variable "domain" {
+  description = "Domain"
+  type        = string
 }
 
-variable "K3STOKEN" {
-    type = string
+variable "vmuser_data" {
+  description = "full path to a user data yaml file."
+  type        = string
+}
+
+variable "enable_new_user_data" {
+  description = "true if user data will be included"
+  type        = bool
+}
+
+variable "vmmetadata" {
+  description = "full path to metadata yaml file"
+  type        = string
 }
