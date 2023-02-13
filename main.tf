@@ -51,6 +51,13 @@ data "vsphere_virtual_machine" "template" {
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
+# data template_file "metadataconfig" {
+#   template = file(var.vmmetadata)
+#   vars = {
+#     hostname = var.vmname
+#   }
+# }
+
 resource "vsphere_virtual_machine" "vm" {
   name             = var.vmname
   resource_pool_id = data.vsphere_resource_pool.pool.id
@@ -72,22 +79,12 @@ resource "vsphere_virtual_machine" "vm" {
   }
   clone {
     template_uuid = data.vsphere_virtual_machine.template.id
-
-    # customize {
-    #   linux_options {
-    #     host_name = var.vmname
-    #     domain    = var.domain
-    #   }
-
-    #   network_interface {
-    #   }
-    # }
   }
 
   extra_config = {
-    "guestinfo.metadata"          = base64encode(file(var.vmmetadata))
+    "guestinfo.metadata"          = base64encode(var.vmmetadata)
     "guestinfo.metadata.encoding" = "base64"
-    "guestinfo.userdata"          = base64encode(file(var.vmuser_data))
+    "guestinfo.userdata"          = base64encode(var.vmuser_data)
     "guestinfo.userdata.encoding" = "base64"
   }
 }
