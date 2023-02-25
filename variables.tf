@@ -1,17 +1,17 @@
-variable "vsphere_user" {
-  description = "vCenter User"
-  type        = string
-}
+# variable "vsphere_user" {
+#   description = "vCenter User"
+#   type        = string
+# }
 
-variable "vsphere_password" {
-  description = "vCenter User password."
-  type        = string
-}
+# variable "vsphere_password" {
+#   description = "vCenter User password."
+#   type        = string
+# }
 
-variable "vsphere_server" {
-  description = "vCenter Server"
-  type        = string
-}
+# variable "vsphere_server" {
+#   description = "vCenter Server"
+#   type        = string
+# }
 
 variable "VMDatacenter" {
   description = "VM Datacenter"
@@ -67,11 +67,6 @@ variable "domain" {
 variable "vmuser_data" {
   description = "full path to a user data yaml file."
   type        = string
-}
-
-variable "enable_new_user_data" {
-  description = "true if user data will be included"
-  type        = bool
 }
 
 variable "vmmetadata" {
